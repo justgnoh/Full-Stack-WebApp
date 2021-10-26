@@ -11,7 +11,7 @@ const pool = new Pool({
   user:'postgres',
   host: 'localhost',
   database:'api',
-  port:5433
+  port:5432
 })
 
 // GET Users
