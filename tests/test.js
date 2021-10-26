@@ -78,7 +78,7 @@ describe("Users", () => {
     it("should update a user successfully", (done) => {
       chai
         .request(app)
-        .delete("/users/23")
+        .delete("/users/4")
         .end((err, res) => {
           res.should.have.status(200);
           done();
@@ -90,7 +90,7 @@ describe("Users", () => {
     it("should get user with user id 23 after deletion", (done) => {
       chai
         .request(app)
-        .get("/users/23")
+        .get("/users/4")
         .end((err, res) => {
           res.should.have.status(200);
           expect(res.body).to.be.an('array').that.is.empty;
