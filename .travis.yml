@@ -12,7 +12,7 @@ before_script:
   - psql -c "CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT, email TEXT);" -U postgres
   - psql -c "INSERT INTO users VALUES (1, 'Alice', 'alice@gmail.com');" -U postgres
   - psql -c "INSERT INTO users VALUES (2, 'Bob', 'bob@gmail.com');" -U postgres
-  - psql -c "INSERT INTO users VALUES (3, 'Charly', 'charly@gmail.com');" -U postgres"
+  - psql -c "INSERT INTO users VALUES (3, 'Charly', 'charly@gmail.com');" -U postgres
               
               
 script:
