@@ -13,7 +13,6 @@ before_script:
   - psql -c "INSERT INTO users VALUES (1, 'Alice', 'alice@gmail.com');" -U postgres -d api
   - psql -c "INSERT INTO users VALUES (2, 'Bob', 'bob@gmail.com');" -U postgres -d api
   - psql -c "INSERT INTO users VALUES (3, 'Charly', 'charly@gmail.com');" -U postgres -d api
-  - psql -c "select * from users;" -U postgres
   - psql -c "select * from users;" -U postgres -d api
               
               
