@@ -1,7 +1,8 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+require('dotenv').config()
 const app = express()
-const port = 6969
+const port = process.env.PORT || 6969
 
 const db = require('./queries')
 
