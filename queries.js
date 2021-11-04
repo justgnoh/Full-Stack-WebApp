@@ -28,6 +28,14 @@ pool.connect((err, client, release) => {
   })
 })
 
+pool.on('connect', client => {
+  console.log("connected")
+})
+
+pool.on('error', err => {
+  console.log(err)
+})
+
 // GET Users
 const getUsers = (request, response) => {
     pool.query('SELECT * FROM users ORDER BY id', (error, results) => {
