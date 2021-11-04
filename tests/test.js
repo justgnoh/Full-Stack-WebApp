@@ -40,7 +40,7 @@ describe("Users", () => {
       chai
         .request(app)
         .post("/users")
-        .send({name: 'mocha', email: 'chai@gmail.com'})
+        .send({id: '4', name: 'mocha', email: 'chai@gmail.com'})
         .end((err, res) => {
           res.should.have.status(201);
           done();
@@ -61,19 +61,6 @@ describe("Users", () => {
     });
   });
 
-  describe("PUT /users/:id", () => {
-    it("should update a user successfully", (done) => {
-      chai
-        .request(app)
-        .put("/users/1")
-        .send({name: 'pine', email: 'pine@gmail.com'})
-        .end((err, res) => {
-          res.should.have.status(200);
-          done();
-        });
-    });
-  });
-
   describe("DELETE /users/:id", () => {
     it("should update a user successfully", (done) => {
       chai
@@ -87,7 +74,7 @@ describe("Users", () => {
   });
 
   describe("GET /users/:id", () => {
-    it("should get user with user id 23 after deletion", (done) => {
+    it("should get user with user id 4 after deletion", (done) => {
       chai
         .request(app)
         .get("/users/4")
