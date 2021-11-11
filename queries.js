@@ -10,22 +10,22 @@ const asyncHandler = require("express-async-handler");
 // })
 
 // TRAVIS CI
-// const pool = new Pool({
-//   user: "postgres",
-//   host: "localhost",
-//   database: "api",
-//   password: "postgres",
-//   port: 5432
-// })
-
-// Local Host
 const pool = new Pool({
-  user: "justingnoh",
+  user: "postgres",
   host: "localhost",
   database: "api",
-  password: "justgnoh",
-  port: 5003
+  password: "postgres",
+  port: 5432
 })
+
+// Local Host
+// const pool = new Pool({
+//   user: "justingnoh",
+//   host: "localhost",
+//   database: "api",
+//   password: "justgnoh",
+//   port: 5003
+// })
 
 pool.connect((err, client, release) => {
   if (err) {
