@@ -1,16 +1,17 @@
 const Pool = require("pg").Pool;
 const asyncHandler = require("express-async-handler");
+var pool;
 
 if (process.env.DATABASE_URL) {
   console.log(process.env.DATABASE_URL)
   const connectionString = process.env.DATABASE_URL
 
-  const pool = new Pool({
+  pool = new Pool({
   connectionString,
   ssl: { rejectUnauthorized: false }
 })
 } else {
-  const pool = new Pool({
+  pool = new Pool({
   user: process.env.PGUSER,
   host: process.env.PGHOST,
   database: process.env.PGDATABASE,
