@@ -11,6 +11,14 @@ if (process.env.DATABASE_URL) {
   ssl: { rejectUnauthorized: false }
 })
 } else {
+  console.log({
+    user: process.env.PGUSER,
+    host: process.env.PGHOST,
+    database: process.env.PGDATABASE,
+    password: process.env.PGPASSWORD,
+    port: process.env.PGPORT
+  })
+
   pool = new Pool({
   user: process.env.PGUSER,
   host: process.env.PGHOST,
