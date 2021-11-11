@@ -5,6 +5,13 @@ install:
   - npm install
 services:
   - postgresql
+env:
+  global:
+  - PGPORT=5432
+  - PGUSER=postgres
+  - PGPASSWORD=postgres
+  - PGHOST=localhost
+  - PGDATABASE=api
 
 before_script:
   - psql -c 'create database api;' -U postgres

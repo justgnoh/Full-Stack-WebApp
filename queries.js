@@ -1,13 +1,23 @@
 const Pool = require("pg").Pool;
 const asyncHandler = require("express-async-handler");
 
-// const pool = new Pool({
-//   user: process.env.DB_USER,
-//   host: process.env.DB_HOST,
-//   database: process.env.DB_DATABASE,
-//   password: process.env.DB_PASSWORD,
-//   port: process.env.DB_PORT
-// })
+if (process.env.DATABASE_URL) {
+  console.log(process.env.DATABASE_URL)
+  const connectionString = process.env.DATABASE_URL
+
+  const pool = new Pool({
+  connectionString,
+  ssl: { rejectUnauthorized: false }
+})
+} else {
+  const pool = new Pool({
+  user: process.env.PGUSER,
+  host: process.env.PGHOST,
+  database: process.env.PGDATABASE,
+  password: process.env.PGPASSWORD,
+  port: process.env.PGPORT
+})
+}
 
 // TRAVIS CI
 // const pool = new Pool({
@@ -18,11 +28,6 @@ const asyncHandler = require("express-async-handler");
 //   port: 5432
 // })
 
-const connectionString = "postgres://clqqxmsyerrewi:1560afb1ff1519d58f47852d9275185f42d06c32e65f25b5bb8633fbe52d14b8@ec2-44-194-232-228.compute-1.amazonaws.com:5432/dc5ke3hjhqm0or"
-const pool = new Pool({
-  connectionString,
-  ssl: { rejectUnauthorized: false }
-})
 
 // Local Host
 // const pool = new Pool({
