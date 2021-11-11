@@ -28,25 +28,6 @@ if (process.env.DATABASE_URL) {
 })
 }
 
-// TRAVIS CI
-// const pool = new Pool({
-//   user: "postgres",
-//   host: "localhost",
-//   database: "api",
-//   password: "postgres",
-//   port: 5432
-// })
-
-
-// Local Host
-// const pool = new Pool({
-//   user: "justingnoh",
-//   host: "localhost",
-//   database: "api",
-//   password: "justgnoh",
-//   port: 5003
-// })
-
 pool.connect((err, client, release) => {
   if (err) {
     return console.error("Error acquiring client", err.stack);
@@ -62,6 +43,7 @@ pool.connect((err, client, release) => {
 
 pool.on("connect", (client) => {
   console.log("connected");
+  console.log("Post Deployment Test");
 });
 
 pool.on("error", (err) => {
