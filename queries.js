@@ -1,12 +1,21 @@
 const Pool = require("pg").Pool;
 const asyncHandler = require("express-async-handler");
 
+// const pool = new Pool({
+//   user: process.env.DB_USER,
+//   host: process.env.DB_HOST,
+//   database: process.env.DB_DATABASE,
+//   password: process.env.DB_PASSWORD,
+//   port: process.env.DB_PORT
+// })
+
+// TRAVIS CI
 const pool = new Pool({
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  database: process.env.DB_DATABASE,
-  password: process.env.DB_PASSWORD,
-  port: process.env.DB_PORT
+  user: "postgres",
+  host: "localhost",
+  database: "api",
+  password: "justgnoh",
+  port: 5003
 })
 
 pool.connect((err, client, release) => {
