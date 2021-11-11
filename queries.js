@@ -83,8 +83,8 @@ const createUser = (req, res) => {
   }
 
   pool.query(
-    "INSERT INTO users (name, email) VALUES ($1, $2)",
-    [name, email],
+    "INSERT INTO users (id, name, email) VALUES ($1, $2, $3)",
+    [id, name, email],
     (error, results) => {
       if (error) {
         throw error;

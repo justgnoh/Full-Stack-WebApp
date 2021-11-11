@@ -37,7 +37,7 @@ describe("Users", () => {
       chai
         .request(app)
         .post("/users")
-        .send({ id: "4", name: "mocha", email: "chai@gmail.com" })
+        .send({ id: "69", name: "mocha", email: "chai@gmail.com" })
         .end((err, res) => {
           res.should.have.status(201);
           done();
@@ -62,7 +62,7 @@ describe("Users", () => {
     it("should update a user successfully", (done) => {
       chai
         .request(app)
-        .delete("/users/4")
+        .delete("/users/69")
         .end((err, res) => {
           res.should.have.status(200);
           done();
