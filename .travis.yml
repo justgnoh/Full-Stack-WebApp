@@ -1,10 +1,10 @@
 language: node_js
 node_js:
-  - 14
+- 14
 install:
-  - npm install
+- npm install
 services:
-  - postgresql
+- postgresql
 env:
   global:
   - PGPORT=5432
@@ -14,14 +14,18 @@ env:
   - PGDATABASE=postgres
 
 before_script:
-  - psql -c "CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT, email TEXT);" -U postgres 
-  - psql -c "INSERT INTO users VALUES (1, 'Alice', 'alice@gmail.com');" -U postgres
-  - psql -c "INSERT INTO users VALUES (2, 'Bob', 'bob@gmail.com');" -U postgres
-  - psql -c "INSERT INTO users VALUES (3, 'Charly', 'charly@gmail.com');" -U postgres
-  - psql -c "select * from users;" -U postgres
-              
-              
+- psql -c "CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT, email TEXT);" -U
+  postgres
+- psql -c "INSERT INTO users VALUES (1, 'Alice', 'alice@gmail.com');" -U postgres
+- psql -c "INSERT INTO users VALUES (2, 'Bob', 'bob@gmail.com');" -U postgres
+- psql -c "INSERT INTO users VALUES (3, 'Charly', 'charly@gmail.com');" -U postgres
+- psql -c "select * from users;" -U postgres
+
 script:
-  - npm test
+- npm test
 
-
+deploy:
+  provider: heroku
+  api_key:
+    secure: jnS0mEJr98vYTFqIIzB+TGoKupqzzgkGlv+T1iKymh0d2T7AXrL/d6jHEa7OE+FLMpq6j3lRpcoO92Z9YcCSn5oi/OzdFnWR+e+OWQEdXA1Mayz9gkEvr4GgKDF0VKBtV8B4tqm1mSgdmJs+Vh4lyFjrSBfolvqjpGY1+GW+9kH7QjloUYCr7gSv9bogUIoPgisnSsCyAXQFvF38W0mx0XymwXs6uWotk0N+IHUu/TpHn+5bAhfeONDWOgTrjeA0ZuCzhaGvNw1C22p172xvmTzu57hSfzFfpipvWqBelqJFlFJ/MRNJ8JA8ZBgNe1q66HXaJucbL9k4IHPswsFQOMKBZcGbZNmfTHnh1YETyQw433t09kFhAPJc255XIZ4SrM8lErzIl++bWoX3PD5f0Yit8m7b2WdMAtHiOPKwkxX1ijZxgqkFnRquIBQRx/07ZjKkddi0W0ZVK5qJItKAjnoFJutPCwQSbEaDasneqlMpGdFYbjCEOr//6ttXl5PfMutuZbcl34xDxJbzal3cNtvmmpnOBPPyFQcsDM2+AfounImu48G/Xs/4KCU0cCBDaXzqMiGsGrGyxrs/A/uhgFK8nt6ov8prXzrDN0SMEPEWd1RE9QT4KOdX1DJB2sB6sdqInnTPLctw/wOX86FhDHRVVAvfrnzBm/Tqbh1lOQw=
+  app: justingnoh-cs3219-task-b
