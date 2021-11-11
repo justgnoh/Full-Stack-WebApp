@@ -10,12 +10,21 @@ const asyncHandler = require("express-async-handler");
 // })
 
 // TRAVIS CI
+// const pool = new Pool({
+//   user: "postgres",
+//   host: "localhost",
+//   database: "api",
+//   password: "postgres",
+//   port: 5432
+// })
+
+// Local Host
 const pool = new Pool({
-  user: "postgres",
+  user: "justingnoh",
   host: "localhost",
   database: "api",
-  password: "postgres",
-  port: 5432
+  password: "justgnoh",
+  port: 5003
 })
 
 pool.connect((err, client, release) => {
@@ -71,8 +80,11 @@ const getUserById = (req, res) => {
 };
 
 // POST new user
-const createUser = (req, res) => {
-  const { name, email } = req.body;
+const createUser = asyncHandler( async (req, res) => {
+  const { id, name, email } = req.body;
+  if (!id) {
+    return res.status(400).send(ERROR_NO_ID);
+  }
 
   if (!name) {
     return res.status(400).send(ERROR_NO_NAME);
@@ -82,17 +94,23 @@ const createUser = (req, res) => {
     return res.status(400).send(ERROR_NO_EMAIL);
   }
 
-  pool.query(
-    "INSERT INTO users (id, name, email) VALUES ($1, $2, $3)",
-    [id, name, email],
-    (error, results) => {
-      if (error) {
-        throw error;
-      }
-      res.status(201).send(`User added`);
-    }
-  );
-};
+  await addUser(id, name, email).catch(err => {
+    console.log(err);
+    return res.status(500).send(err.detail);
+  })
+
+  res.status(201).send(`User added with ID: ${id}`);
+});
+
+async function addUser(id, name, email) {
+  try {
+      const result = await pool.query("INSERT INTO users (id, name, email) VALUES ($1, $2, $3)",
+      [id, name, email]);
+      return result.row;
+  } catch (err) {
+      throw err;
+  }
+}
 
 // UPDATE user
 const updateUser = (req, res) => {

@@ -37,7 +37,7 @@ describe("Users", () => {
       chai
         .request(app)
         .post("/users")
-        .send({ id: "69", name: "mocha", email: "chai@gmail.com" })
+        .send({ id: "4", name: "mocha", email: "chai@gmail.com" })
         .end((err, res) => {
           res.should.have.status(201);
           done();
@@ -59,12 +59,25 @@ describe("Users", () => {
   });
 
   describe("DELETE /users/:id", () => {
-    it("should update a user successfully", (done) => {
+    it("should delete a user successfully", (done) => {
       chai
         .request(app)
-        .delete("/users/69")
+        .delete("/users/4")
         .end((err, res) => {
           res.should.have.status(200);
+          done();
+        });
+    });
+  });
+
+  describe("GET /users/:id", () => {
+    it("should get EMPTY user after deletion", (done) => {
+      chai
+        .request(app)
+        .get("/users/4")
+        .end((err, res) => {
+          res.should.have.status(404);
+          expect(res.body).to.be.an('object').that.is.empty;
           done();
         });
     });
