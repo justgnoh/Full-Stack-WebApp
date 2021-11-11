@@ -135,7 +135,6 @@ const deleteUser = (req, res) => {
 module.exports = {
   getUsers,
   createUser,
-  getStyles,
   updateUser,
   deleteUser,
   getUserById,
