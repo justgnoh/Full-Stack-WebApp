@@ -14,8 +14,8 @@ const pool = new Pool({
   user: "postgres",
   host: "localhost",
   database: "api",
-  password: "justgnoh",
-  port: 5003
+  password: "postgres",
+  port: 5432
 })
 
 pool.connect((err, client, release) => {
