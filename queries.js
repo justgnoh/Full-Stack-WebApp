@@ -2,20 +2,12 @@ const Pool = require("pg").Pool;
 const asyncHandler = require("express-async-handler");
 
 const pool = new Pool({
-  user: "justingnoh",
-  host: "localhost",
-  database: "api",
-  password: "justgnoh",
-  port: 5003,
-});
-
-// const pool = new Pool({
-//   user:'postgres',
-//   host: 'localhost',
-//   database:'api',
-//   password: 'postgres',
-//   port:5432
-// })
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_DATABASE,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT
+})
 
 pool.connect((err, client, release) => {
   if (err) {
@@ -138,16 +130,6 @@ const deleteUser = (req, res) => {
   } catch (error) {
     res.status(500).send(error);
   }
-};
-
-// Gets beer styles
-const getStyles = (req, res) => {
-  pool.query("SELECT * FROM styles ORDER BY id", (error, results) => {
-    if (error) {
-      throw error;
-    }
-    res.status(200).json(results.rows);
-  });
 };
 
 module.exports = {

@@ -6,20 +6,6 @@ chai.use(chaiHttp);
 chai.should();
 
 describe("Users", () => {
-  describe("GET /beerstyles", () => {
-    it("should get users", (done) => {
-      chai
-        .request(app)
-        .get("/beerstyles")
-        .end((err, res) => {
-          res.should.have.status(200);
-          expect(res.body[0]).to.have.all.keys("id", "name");
-          done();
-        });
-    });
-  });
-
-
   describe("GET /getAllUsers", () => {
     it("should get users", (done) => {
       chai
