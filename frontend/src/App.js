@@ -4,8 +4,8 @@ import { Button, Card, InputGroup, FormControl } from 'react-bootstrap';
 import { getAllUsers, getUserById, addUser, updateUser, deleteUser } from './Api';
 
 function App() {
-  const [response, setResponse] = useState('Something funny');
-  const [result, setResult] = useState('Something funny');
+  const [response, setResponse] = useState('Request results show up here');
+  const [result, setResult] = useState('Request results show up here');
   const [id, setId] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
